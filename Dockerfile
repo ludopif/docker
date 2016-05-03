@@ -4,6 +4,7 @@ MAINTAINER Ludo Piffaretti <ludovic.piffaretti@orange.com>
 
 ENV PS_VERSION 1.6.1.4
 
+
 ENV PS_DOMAIN prestashop.local
 ENV PS_LANGUAGE en
 ENV PS_COUNTRY gb

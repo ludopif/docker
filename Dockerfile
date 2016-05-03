@@ -1,8 +1,8 @@
 FROM php:5.6-apache
 
-MAINTAINER Thomas Nabord <thomas.nabord@prestashop.com>
+MAINTAINER Ludo Piffaretti <ludovic.piffaretti@orange.com>
 
-ENV PS_VERSION {PS_VERSION}
+ENV PS_VERSION 1.6.1.4
 
 ENV PS_DOMAIN prestashop.local
 ENV DB_SERVER 127.0.0.1

@@ -27,23 +27,6 @@ if [ ! -f ./config/settings.inc.php  ]; then
 		sed -ie "s/DirectoryIndex\ index.php\ index.html/DirectoryIndex\ docker_updt_ps_domains.php\ index.php\ index.html/g" /etc/apache2/apache2.conf
 	fi
 
-	if [ $PS_INSTALL_AUTO = 1 ]; then
-		echo "\n* Installing PrestaShop, this may take a while ...";
-		if [ $DB_PASSWD = "" ]; then
-			mysqladmin -h $DB_SERVER -P $DB_PORT -u $DB_USER drop $DB_NAME --force 2> /dev/null;
-			mysqladmin -h $DB_SERVER -P $DB_PORT -u $DB_USER create $DB_NAME --force 2> /dev/null;
-		else
-			mysqladmin -h $DB_SERVER -P $DB_PORT -u $DB_USER -p$DB_PASSWD drop $DB_NAME --force 2> /dev/null;
-			mysqladmin -h $DB_SERVER -P $DB_PORT -u $DB_USER -p$DB_PASSWD create $DB_NAME --force 2> /dev/null;
-		fi
-
-		php /var/www/html/$PS_FOLDER_INSTALL/index_cli.php --domain=$(hostname -i) --db_server=$DB_SERVER:$DB_PORT --db_name="$DB_NAME" --db_user=$DB_USER \
-			--db_password=$DB_PASSWD --firstname="John" --lastname="Doe" \
-			--password=$ADMIN_PASSWD --email="$ADMIN_MAIL" --language=$PS_LANGUAGE --country=$PS_COUNTRY \
-			--newsletter=0 --send_email=0
-
-		chown www-data:www-data -R /var/www/html/
-	fi
 fi
 
 # We need to remove the pid file or Apache won't start after being stopped
